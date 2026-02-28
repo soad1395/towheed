@@ -4,64 +4,64 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ملف إنجاز مادة التوحيد</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
 body{
-  margin:0;
-  font-family:'Tajawal',sans-serif;
-  background:linear-gradient(135deg,#0a0e27,#1a1f3a,#0a0e27);
-  color:white;
-  text-align:center;
+font-family:'Tajawal',sans-serif;
+margin:0;
+color:white;
+background:linear-gradient(135deg,#070B22,#0B1238,#070B22);
+text-align:center;
 }
 
 header{
-  padding:40px 20px;
+padding:30px 15px;
 }
 
 h1{
-  font-size:32px;
-  background:linear-gradient(to right,#a855f7,#06b6d4,#ec4899);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+font-size:32px;
+background:linear-gradient(to left,#7C3AED,#22D3EE);
+-webkit-background-clip:text;
+color:transparent;
+margin-bottom:10px;
 }
 
 .tabs{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:30px;
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+margin:20px 0;
 }
 
 .tab{
-  padding:12px 20px;
-  background:#1f2937;
-  border-radius:12px;
-  cursor:pointer;
-  font-weight:bold;
+background:rgba(255,255,255,0.1);
+padding:10px 18px;
+border-radius:12px;
+cursor:pointer;
+font-weight:bold;
+border:1px solid rgba(255,255,255,0.2);
 }
 
-.tab.active{
-  background:linear-gradient(45deg,#a855f7,#06b6d4);
-}
-
-.section{
-  background:rgba(255,255,255,0.05);
-  margin:20px;
-  padding:20px;
-  border-radius:15px;
+.card{
+background:rgba(255,255,255,0.07);
+margin:15px auto;
+padding:20px;
+border-radius:15px;
+max-width:400px;
 }
 
 .btn{
-  display:inline-block;
-  margin-top:15px;
-  padding:10px 20px;
-  border-radius:10px;
-  background:linear-gradient(45deg,#a855f7,#ec4899);
-  color:white;
-  text-decoration:none;
-  font-weight:bold;
+display:inline-block;
+margin-top:10px;
+padding:10px 20px;
+border-radius:12px;
+background:linear-gradient(135deg,#A855F7,#06B6D4);
+color:white;
+text-decoration:none;
+font-weight:bold;
 }
 </style>
 </head>
@@ -69,37 +69,53 @@ h1{
 <body>
 
 <header>
-<h1>📘 ملف إنجاز مادة التوحيد</h1>
-<p>تكوين عقل مسلم قوي يؤمن بالله تعالى</p>
+<h1>ملف إنجاز مادة التوحيد</h1>
+<p>المعلمة: أ. سعاد الغامدي</p>
 </header>
 
-<div class="tabs">
-<div class="tab active">📚 ثاني أول</div>
-<div class="tab">📖 ثاني ثاني</div>
-<div class="tab">✨ ثاني ثالث</div>
-<div class="tab">🎯 ثاني رابع</div>
+<div class="tabs" id="tabs"></div>
+
+<div class="card">
+<h2>📄 أوراق العمل</h2>
+<a class="btn" target="_blank" href="https://forms.gle/EjteMPTrG8oNA6XY8">رفع ورقة عمل</a>
 </div>
 
-<div class="section">
-<h2>📝 أوراق العمل</h2>
-<a class="btn" href="https://forms.gle/EjteMPTrG8oNA6XY8" target="_blank">
-رفع ورقة عمل
-</a>
-</div>
-
-<div class="section">
+<div class="card">
 <h2>📋 التلخيصات</h2>
-<a class="btn" href="https://forms.gle/EjteMPTrG8oNA6XY8" target="_blank">
-رفع تلخيص
-</a>
+<a class="btn" target="_blank" href="https://forms.gle/EjteMPTrG8oNA6XY8">رفع تلخيص</a>
 </div>
 
-<div class="section">
+<div class="card">
 <h2>🎬 المشاريع</h2>
-<a class="btn" href="https://forms.gle/EjteMPTrG8oNA6XY8" target="_blank">
-رفع مشروع
-</a>
+<a class="btn" target="_blank" href="https://forms.gle/EjteMPTrG8oNA6XY8">رفع مشروع</a>
 </div>
+
+<script>
+const defaultClasses = ["📚 ثاني أول","📖 ثاني ثاني","✨ ثاني ثالث","🎯 ثاني رابع"];
+
+let classes = JSON.parse(localStorage.getItem("classesNames")) || defaultClasses;
+
+function renderTabs(){
+const tabs = document.getElementById("tabs");
+tabs.innerHTML="";
+classes.forEach((name,index)=>{
+let div=document.createElement("div");
+div.className="tab";
+div.textContent=name;
+div.onclick=function(){
+let newName=prompt("عدلي اسم الفصل:",name);
+if(newName){
+classes[index]=newName;
+localStorage.setItem("classesNames",JSON.stringify(classes));
+renderTabs();
+}
+};
+tabs.appendChild(div);
+});
+}
+
+renderTabs();
+</script>
 
 </body>
 </html>
