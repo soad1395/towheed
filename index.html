@@ -1,121 +1,310 @@
  <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ملف إنجاز مادة التوحيد</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ملف إنجاز مادة التوحيد</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
 
-<style>
-body{
-font-family:'Tajawal',sans-serif;
-margin:0;
-color:white;
-background:linear-gradient(135deg,#070B22,#0B1238,#070B22);
-text-align:center;
-}
+  <style>
+    :root{
+      --bg1:#0a0e27;
+      --bg2:#1a1f3a;
+      --card: rgba(255,255,255,0.06);
+      --card2: rgba(0,0,0,0.18);
+      --border: rgba(255,255,255,0.10);
+      --shadow: rgba(0,0,0,0.35);
+      --btn1:#a855f7;
+      --btn2:#06b6d4;
+      --btnText:#fff;
+    }
 
-header{
-padding:30px 15px;
-}
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family:"Tajawal", sans-serif;
+      color:#fff;
+      background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 50%, var(--bg1) 100%);
+      overflow-x:hidden;
+      text-align:center;
+    }
 
-h1{
-font-size:32px;
-background:linear-gradient(to left,#7C3AED,#22D3EE);
--webkit-background-clip:text;
-color:transparent;
-margin-bottom:10px;
-}
+    /* نجوم خفيفة بالخلفية */
+    .stars{
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255,255,255,.18) 1px, transparent 2px),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,.14) 1px, transparent 2px),
+        radial-gradient(circle at 30% 70%, rgba(255,255,255,.12) 1px, transparent 2px),
+        radial-gradient(circle at 70% 80%, rgba(255,255,255,.10) 1px, transparent 2px);
+      background-size: 260px 260px, 300px 300px, 340px 340px, 400px 400px;
+      opacity:.55;
+      pointer-events:none;
+      filter: blur(.2px);
+    }
 
-.tabs{
-display:flex;
-justify-content:center;
-gap:10px;
-flex-wrap:wrap;
-margin:20px 0;
-}
+    .wrap{
+      width:min(980px, 92vw);
+      margin: 0 auto;
+      padding: 42px 0 70px;
+      position:relative;
+      z-index:1;
+    }
 
-.tab{
-background:rgba(255,255,255,0.1);
-padding:10px 18px;
-border-radius:12px;
-cursor:pointer;
-font-weight:bold;
-border:1px solid rgba(255,255,255,0.2);
-}
+    header{
+      padding: 22px 10px 10px;
+    }
 
-.card{
-background:rgba(255,255,255,0.07);
-margin:15px auto;
-padding:20px;
-border-radius:15px;
-max-width:400px;
-}
+    h1{
+      margin:0 0 8px;
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight:900;
+      letter-spacing:.2px;
+      background: linear-gradient(90deg, #a855f7, #06b6d4, #ec4899);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
 
-.btn{
-display:inline-block;
-margin-top:10px;
-padding:10px 20px;
-border-radius:12px;
-background:linear-gradient(135deg,#A855F7,#06B6D4);
-color:white;
-text-decoration:none;
-font-weight:bold;
-}
-</style>
+    .subtitle{
+      margin:0 auto 22px;
+      max-width: 720px;
+      color: rgba(255,255,255,.85);
+      font-size: clamp(14px, 2vw, 18px);
+      line-height:1.7;
+    }
+
+    .glass{
+      display:inline-block;
+      margin-top: 6px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.9);
+      font-size: 14px;
+    }
+
+    /* تبويبات الفصول */
+    .tabs{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin: 18px 0 22px;
+    }
+    .tab{
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      cursor:pointer;
+      user-select:none;
+      transition: .2s ease;
+      font-weight:700;
+      color: rgba(255,255,255,.95);
+      box-shadow: 0 10px 25px rgba(0,0,0,.15);
+    }
+    .tab:hover{ transform: translateY(-1px); }
+    .tab.active{
+      background: linear-gradient(135deg, rgba(168,85,247,.9), rgba(6,182,212,.85));
+      border-color: rgba(255,255,255,.22);
+    }
+    .tab small{
+      display:block;
+      margin-top:4px;
+      font-weight:400;
+      font-size: 12px;
+      opacity:.85;
+    }
+
+    /* الكروت الثلاث */
+    .section{
+      background: rgba(0,0,0,.20);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 22px;
+      padding: 28px 18px;
+      margin: 18px 0;
+      box-shadow: 0 18px 55px rgba(0,0,0,.28);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .section h2{
+      margin: 0 0 14px;
+      font-size: 28px;
+      font-weight:900;
+    }
+
+    .btn{
+      display:inline-block;
+      padding: 12px 22px;
+      border-radius: 14px;
+      border: 0;
+      font-family: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      color: var(--btnText);
+      background: linear-gradient(135deg, var(--btn1), var(--btn2));
+      box-shadow: 0 12px 30px rgba(168,85,247,.18);
+      text-decoration:none;
+      transition: .15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); }
+
+    .hint{
+      margin-top: 10px;
+      font-size: 13px;
+      color: rgba(255,255,255,.75);
+    }
+
+    footer{
+      margin-top: 26px;
+      color: rgba(255,255,255,.65);
+      font-size: 12px;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="stars"></div>
 
-<header>
-<h1>ملف إنجاز مادة التوحيد</h1>
-<p>المعلمة: أ. سعاد الغامدي</p>
-</header>
+  <div class="wrap">
+    <header>
+      <h1>ملف إنجاز مادة التوحيد</h1>
+      <p class="subtitle">تكوين عقل مسلم قوي يؤمن بالله تعالى</p>
 
-<div class="tabs" id="tabs"></div>
+      <div class="glass">
+        <span>ملاحظة:</span>
+        لتعديل **اسم الفصل** اضغطي ضغطه مطوّلة على اسم الفصل ⟵
+      </div>
+    </header>
 
-<div class="card">
-<h2>📄 أوراق العمل</h2>
-<a class="btn" target="_blank" href="https://forms.gle/EjteMPTrG8oNA6XY8">رفع ورقة عمل</a>
-</div>
+    <!-- الفصول -->
+    <div class="tabs" id="tabs">
+      <div class="tab active" data-class="0">📚 <span class="tabText">ثاني أول</span><small>اضغطي مطوّل للتعديل</small></div>
+      <div class="tab" data-class="1">📖 <span class="tabText">ثاني ثاني</span><small>اضغطي مطوّل للتعديل</small></div>
+      <div class="tab" data-class="2">✨ <span class="tabText">ثاني ثالث</span><small>اضغطي مطوّل للتعديل</small></div>
+      <div class="tab" data-class="3">🎯 <span class="tabText">ثاني رابع</span><small>اضغطي مطوّل للتعديل</small></div>
+    </div>
 
-<div class="card">
-<h2>📋 التلخيصات</h2>
-<a class="btn" target="_blank" href="https://forms.gle/EjteMPTrG8oNA6XY8">رفع تلخيص</a>
-</div>
+    <!-- أوراق العمل -->
+    <div class="section">
+      <h2>📝 أوراق العمل</h2>
+      <a class="btn" id="btnWorks" href="#" target="_blank" rel="noopener">رفع ورقة عمل</a>
+      <div class="hint">يفتح الفورم ويرفعون الطالبات ملفهم</div>
+    </div>
 
-<div class="card">
-<h2>🎬 المشاريع</h2>
-<a class="btn" target="_blank" href="https://forms.gle/EjteMPTrG8oNA6XY8">رفع مشروع</a>
-</div>
+    <!-- التلخيصات -->
+    <div class="section">
+      <h2>📋 التلخيصات</h2>
+      <a class="btn" id="btnSummaries" href="#" target="_blank" rel="noopener">رفع تلخيص</a>
+      <div class="hint">نفس الفورم (تقدرين تغيرينه لاحقاً إذا تبين فورم خاص)</div>
+    </div>
 
-<script>
-const defaultClasses = ["📚 ثاني أول","📖 ثاني ثاني","✨ ثاني ثالث","🎯 ثاني رابع"];
+    <!-- المشاريع -->
+    <div class="section">
+      <h2>🎬 المشاريع</h2>
+      <a class="btn" id="btnProjects" href="#" target="_blank" rel="noopener">رفع مشروع</a>
+      <div class="hint">نفس الفورم</div>
+    </div>
 
-let classes = JSON.parse(localStorage.getItem("classesNames")) || defaultClasses;
+    <footer>
+      © ملف إنجاز مادة التوحيد
+    </footer>
+  </div>
 
-function renderTabs(){
-const tabs = document.getElementById("tabs");
-tabs.innerHTML="";
-classes.forEach((name,index)=>{
-let div=document.createElement("div");
-div.className="tab";
-div.textContent=name;
-div.onclick=function(){
-let newName=prompt("عدلي اسم الفصل:",name);
-if(newName){
-classes[index]=newName;
-localStorage.setItem("classesNames",JSON.stringify(classes));
-renderTabs();
-}
-};
-tabs.appendChild(div);
-});
-}
+  <script>
+    // ======== (1) رابط الفورم الأساسي ========
+    const BASE_FORM_URL = "https://forms.gle/EjteMPTrG8oNA6XY8";
 
-renderTabs();
-</script>
+    // ======== (2) حفظ أسماء الفصول في الجهاز (LocalStorage) ========
+    const STORAGE_KEY = "towheed_class_names_v1";
 
+    const tabs = Array.from(document.querySelectorAll(".tab"));
+    const tabTexts = Array.from(document.querySelectorAll(".tabText"));
+
+    // تحميل أسماء محفوظة
+    function loadClassNames(){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(!raw) return;
+        const saved = JSON.parse(raw);
+        if(!Array.isArray(saved)) return;
+        saved.forEach((name, i) => {
+          if(typeof name === "string" && tabTexts[i]) tabTexts[i].textContent = name;
+        });
+      }catch(e){}
+    }
+
+    // حفظ أسماء
+    function saveClassNames(){
+      const names = tabTexts.map(el => el.textContent.trim());
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(names));
+    }
+
+    // ======== (3) ربط الأزرار حسب الفصل المختار ========
+    // إذا تبين "رابط واحد لكل فصل" لاحقاً: غيري mapLinks لكل فصل.
+    // حالياً: نفس الفورم لكل الفصول (مثل طلبك).
+    function getFormLinkForSelectedClass(){
+      // هنا نقدر نضيف بارامتر للفصل لو تبين (يفيد لو عملتي prefill في Google Forms)
+      const activeIndex = tabs.findIndex(t => t.classList.contains("active"));
+      const className = (tabTexts[activeIndex]?.textContent || "").trim();
+
+      // مثال: إرسال اسم الفصل كـ query (لن يعبّي الفورم تلقائياً إلا لو استخدمتي prefill)
+      const u = new URL(BASE_FORM_URL);
+      if(className) u.searchParams.set("class", className);
+      return u.toString();
+    }
+
+    function refreshButtons(){
+      const link = getFormLinkForSelectedClass();
+      document.getElementById("btnWorks").href = link;
+      document.getElementById("btnSummaries").href = link;
+      document.getElementById("btnProjects").href = link;
+    }
+
+    // تغيير التبويب
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+        refreshButtons();
+      });
+
+      // ضغط مطوّل لتعديل اسم الفصل
+      let pressTimer = null;
+      const startPress = (e) => {
+        pressTimer = setTimeout(() => {
+          const idx = Number(tab.dataset.class);
+          const current = tabTexts[idx].textContent.trim();
+          const name = prompt("اكتبي اسم الفصل الجديد:", current);
+          if(name && name.trim()){
+            tabTexts[idx].textContent = name.trim();
+            saveClassNames();
+            refreshButtons();
+          }
+        }, 600);
+      };
+      const endPress = () => {
+        if(pressTimer) clearTimeout(pressTimer);
+        pressTimer = null;
+      };
+
+      tab.addEventListener("touchstart", startPress, {passive:true});
+      tab.addEventListener("touchend", endPress);
+      tab.addEventListener("touchcancel", endPress);
+
+      tab.addEventListener("mousedown", startPress);
+      tab.addEventListener("mouseup", endPress);
+      tab.addEventListener("mouseleave", endPress);
+    });
+
+    // تشغيل أول مرة
+    loadClassNames();
+    refreshButtons();
+  </script>
 </body>
 </html>
