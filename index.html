@@ -1,310 +1,185 @@
  <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ملف إنجاز مادة التوحيد</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملف إنجاز مادة التوحيد</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --bg1:#0a0e27;
-      --bg2:#1a1f3a;
-      --card: rgba(255,255,255,0.06);
-      --card2: rgba(0,0,0,0.18);
-      --border: rgba(255,255,255,0.10);
-      --shadow: rgba(0,0,0,0.35);
-      --btn1:#a855f7;
-      --btn2:#06b6d4;
-      --btnText:#fff;
-    }
+<style>
+body{
+margin:0;
+font-family:'Tajawal',sans-serif;
+background:linear-gradient(135deg,#0a0e27,#1a1f3a,#0a0e27);
+color:white;
+overflow-x:hidden;
+}
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family:"Tajawal", sans-serif;
-      color:#fff;
-      background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 50%, var(--bg1) 100%);
-      overflow-x:hidden;
-      text-align:center;
-    }
+header{
+text-align:center;
+padding:40px 20px;
+}
 
-    /* نجوم خفيفة بالخلفية */
-    .stars{
-      position:fixed;
-      inset:0;
-      background:
-        radial-gradient(circle at 20% 10%, rgba(255,255,255,.18) 1px, transparent 2px),
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,.14) 1px, transparent 2px),
-        radial-gradient(circle at 30% 70%, rgba(255,255,255,.12) 1px, transparent 2px),
-        radial-gradient(circle at 70% 80%, rgba(255,255,255,.10) 1px, transparent 2px);
-      background-size: 260px 260px, 300px 300px, 340px 340px, 400px 400px;
-      opacity:.55;
-      pointer-events:none;
-      filter: blur(.2px);
-    }
+h1{
+font-size:32px;
+background:linear-gradient(to right,#a855f7,#06b6d4,#ec4899);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
 
-    .wrap{
-      width:min(980px, 92vw);
-      margin: 0 auto;
-      padding: 42px 0 70px;
-      position:relative;
-      z-index:1;
-    }
+.tabs{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:30px;
+}
 
-    header{
-      padding: 22px 10px 10px;
-    }
+.tab{
+padding:10px 20px;
+background:#2d3748;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+}
 
-    h1{
-      margin:0 0 8px;
-      font-size: clamp(28px, 4vw, 46px);
-      font-weight:900;
-      letter-spacing:.2px;
-      background: linear-gradient(90deg, #a855f7, #06b6d4, #ec4899);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
+.tab.active{
+background:linear-gradient(45deg,#8b5cf6,#06b6d4);
+}
 
-    .subtitle{
-      margin:0 auto 22px;
-      max-width: 720px;
-      color: rgba(255,255,255,.85);
-      font-size: clamp(14px, 2vw, 18px);
-      line-height:1.7;
-    }
+.section{
+background:rgba(255,255,255,0.05);
+margin:20px;
+padding:20px;
+border-radius:15px;
+border:1px solid rgba(255,255,255,0.1);
+}
 
-    .glass{
-      display:inline-block;
-      margin-top: 6px;
-      padding: 10px 14px;
-      border-radius: 14px;
-      background: rgba(0,0,0,.18);
-      border: 1px solid rgba(255,255,255,.10);
-      color: rgba(255,255,255,.9);
-      font-size: 14px;
-    }
+button{
+padding:8px 15px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+margin:5px;
+font-weight:bold;
+}
 
-    /* تبويبات الفصول */
-    .tabs{
-      display:flex;
-      justify-content:center;
-      gap:10px;
-      flex-wrap:wrap;
-      margin: 18px 0 22px;
-    }
-    .tab{
-      padding: 12px 18px;
-      border-radius: 14px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      cursor:pointer;
-      user-select:none;
-      transition: .2s ease;
-      font-weight:700;
-      color: rgba(255,255,255,.95);
-      box-shadow: 0 10px 25px rgba(0,0,0,.15);
-    }
-    .tab:hover{ transform: translateY(-1px); }
-    .tab.active{
-      background: linear-gradient(135deg, rgba(168,85,247,.9), rgba(6,182,212,.85));
-      border-color: rgba(255,255,255,.22);
-    }
-    .tab small{
-      display:block;
-      margin-top:4px;
-      font-weight:400;
-      font-size: 12px;
-      opacity:.85;
-    }
+.btn-blue{background:#2563eb;color:white;}
+.btn-red{background:#dc2626;color:white;}
+.btn-green{background:#16a34a;color:white;}
 
-    /* الكروت الثلاث */
-    .section{
-      background: rgba(0,0,0,.20);
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 22px;
-      padding: 28px 18px;
-      margin: 18px 0;
-      box-shadow: 0 18px 55px rgba(0,0,0,.28);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-    }
-    .section h2{
-      margin: 0 0 14px;
-      font-size: 28px;
-      font-weight:900;
-    }
+input{
+padding:6px;
+border-radius:6px;
+border:none;
+margin:5px;
+}
 
-    .btn{
-      display:inline-block;
-      padding: 12px 22px;
-      border-radius: 14px;
-      border: 0;
-      font-family: inherit;
-      font-weight: 800;
-      cursor: pointer;
-      color: var(--btnText);
-      background: linear-gradient(135deg, var(--btn1), var(--btn2));
-      box-shadow: 0 12px 30px rgba(168,85,247,.18);
-      text-decoration:none;
-      transition: .15s ease;
-    }
-    .btn:hover{ transform: translateY(-1px); }
+.file-item{
+background:rgba(0,0,0,0.3);
+padding:10px;
+margin:5px 0;
+border-radius:8px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
 
-    .hint{
-      margin-top: 10px;
-      font-size: 13px;
-      color: rgba(255,255,255,.75);
-    }
-
-    footer{
-      margin-top: 26px;
-      color: rgba(255,255,255,.65);
-      font-size: 12px;
-    }
-  </style>
+footer{
+text-align:center;
+padding:20px;
+color:#aaa;
+border-top:1px solid #333;
+margin-top:40px;
+}
+</style>
 </head>
 
 <body>
-  <div class="stars"></div>
 
-  <div class="wrap">
-    <header>
-      <h1>ملف إنجاز مادة التوحيد</h1>
-      <p class="subtitle">تكوين عقل مسلم قوي يؤمن بالله تعالى</p>
+<header>
+<h1>ملف إنجاز مادة التوحيد 🕌</h1>
+<p>المعلمة: أ. سعاد الغامدي</p>
+</header>
 
-      <div class="glass">
-        <span>ملاحظة:</span>
-        لتعديل **اسم الفصل** اضغطي ضغطه مطوّلة على اسم الفصل ⟵
-      </div>
-    </header>
+<div class="tabs">
+<div class="tab active" onclick="switchTab('2-1')">ثاني أول</div>
+<div class="tab" onclick="switchTab('2-2')">ثاني ثاني</div>
+<div class="tab" onclick="switchTab('2-3')">ثاني ثالث</div>
+<div class="tab" onclick="switchTab('2-4')">ثاني رابع</div>
+</div>
 
-    <!-- الفصول -->
-    <div class="tabs" id="tabs">
-      <div class="tab active" data-class="0">📚 <span class="tabText">ثاني أول</span><small>اضغطي مطوّل للتعديل</small></div>
-      <div class="tab" data-class="1">📖 <span class="tabText">ثاني ثاني</span><small>اضغطي مطوّل للتعديل</small></div>
-      <div class="tab" data-class="2">✨ <span class="tabText">ثاني ثالث</span><small>اضغطي مطوّل للتعديل</small></div>
-      <div class="tab" data-class="3">🎯 <span class="tabText">ثاني رابع</span><small>اضغطي مطوّل للتعديل</small></div>
-    </div>
+<div id="content"></div>
 
-    <!-- أوراق العمل -->
-    <div class="section">
-      <h2>📝 أوراق العمل</h2>
-      <a class="btn" id="btnWorks" href="#" target="_blank" rel="noopener">رفع ورقة عمل</a>
-      <div class="hint">يفتح الفورم ويرفعون الطالبات ملفهم</div>
-    </div>
+<footer>
+جميع الحقوق محفوظة © 2026
+</footer>
 
-    <!-- التلخيصات -->
-    <div class="section">
-      <h2>📋 التلخيصات</h2>
-      <a class="btn" id="btnSummaries" href="#" target="_blank" rel="noopener">رفع تلخيص</a>
-      <div class="hint">نفس الفورم (تقدرين تغيرينه لاحقاً إذا تبين فورم خاص)</div>
-    </div>
+<script>
+let current='2-1';
 
-    <!-- المشاريع -->
-    <div class="section">
-      <h2>🎬 المشاريع</h2>
-      <a class="btn" id="btnProjects" href="#" target="_blank" rel="noopener">رفع مشروع</a>
-      <div class="hint">نفس الفورم</div>
-    </div>
+let data={
+'2-1':{files:[]},
+'2-2':{files:[]},
+'2-3':{files:[]},
+'2-4':{files:[]}
+};
 
-    <footer>
-      © ملف إنجاز مادة التوحيد
-    </footer>
-  </div>
+function save(){
+localStorage.setItem('towheedData',JSON.stringify(data));
+}
 
-  <script>
-    // ======== (1) رابط الفورم الأساسي ========
-    const BASE_FORM_URL = "https://forms.gle/EjteMPTrG8oNA6XY8";
+function load(){
+let saved=localStorage.getItem('towheedData');
+if(saved) data=JSON.parse(saved);
+}
 
-    // ======== (2) حفظ أسماء الفصول في الجهاز (LocalStorage) ========
-    const STORAGE_KEY = "towheed_class_names_v1";
+function switchTab(tab){
+current=tab;
+document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+event.target.classList.add('active');
+render();
+}
 
-    const tabs = Array.from(document.querySelectorAll(".tab"));
-    const tabTexts = Array.from(document.querySelectorAll(".tabText"));
+function addFile(){
+let input=document.getElementById('fileInput');
+let files=Array.from(input.files);
+files.forEach(f=>{
+data[current].files.push({name:f.name});
+});
+save();
+render();
+}
 
-    // تحميل أسماء محفوظة
-    function loadClassNames(){
-      try{
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if(!raw) return;
-        const saved = JSON.parse(raw);
-        if(!Array.isArray(saved)) return;
-        saved.forEach((name, i) => {
-          if(typeof name === "string" && tabTexts[i]) tabTexts[i].textContent = name;
-        });
-      }catch(e){}
-    }
+function deleteFile(i){
+data[current].files.splice(i,1);
+save();
+render();
+}
 
-    // حفظ أسماء
-    function saveClassNames(){
-      const names = tabTexts.map(el => el.textContent.trim());
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(names));
-    }
+function render(){
+let html=`
+<div class="section">
+<h2>📂 الملفات</h2>
+<input type="file" id="fileInput" multiple>
+<button class="btn-blue" onclick="addFile()">إضافة</button>
+<div>
+${data[current].files.map((f,i)=>`
+<div class="file-item">
+<span>${f.name}</span>
+<button class="btn-red" onclick="deleteFile(${i})">حذف</button>
+</div>
+`).join('')}
+</div>
+</div>
+`;
+document.getElementById('content').innerHTML=html;
+}
 
-    // ======== (3) ربط الأزرار حسب الفصل المختار ========
-    // إذا تبين "رابط واحد لكل فصل" لاحقاً: غيري mapLinks لكل فصل.
-    // حالياً: نفس الفورم لكل الفصول (مثل طلبك).
-    function getFormLinkForSelectedClass(){
-      // هنا نقدر نضيف بارامتر للفصل لو تبين (يفيد لو عملتي prefill في Google Forms)
-      const activeIndex = tabs.findIndex(t => t.classList.contains("active"));
-      const className = (tabTexts[activeIndex]?.textContent || "").trim();
+load();
+render();
+</script>
 
-      // مثال: إرسال اسم الفصل كـ query (لن يعبّي الفورم تلقائياً إلا لو استخدمتي prefill)
-      const u = new URL(BASE_FORM_URL);
-      if(className) u.searchParams.set("class", className);
-      return u.toString();
-    }
-
-    function refreshButtons(){
-      const link = getFormLinkForSelectedClass();
-      document.getElementById("btnWorks").href = link;
-      document.getElementById("btnSummaries").href = link;
-      document.getElementById("btnProjects").href = link;
-    }
-
-    // تغيير التبويب
-    tabs.forEach(tab => {
-      tab.addEventListener("click", () => {
-        tabs.forEach(t => t.classList.remove("active"));
-        tab.classList.add("active");
-        refreshButtons();
-      });
-
-      // ضغط مطوّل لتعديل اسم الفصل
-      let pressTimer = null;
-      const startPress = (e) => {
-        pressTimer = setTimeout(() => {
-          const idx = Number(tab.dataset.class);
-          const current = tabTexts[idx].textContent.trim();
-          const name = prompt("اكتبي اسم الفصل الجديد:", current);
-          if(name && name.trim()){
-            tabTexts[idx].textContent = name.trim();
-            saveClassNames();
-            refreshButtons();
-          }
-        }, 600);
-      };
-      const endPress = () => {
-        if(pressTimer) clearTimeout(pressTimer);
-        pressTimer = null;
-      };
-
-      tab.addEventListener("touchstart", startPress, {passive:true});
-      tab.addEventListener("touchend", endPress);
-      tab.addEventListener("touchcancel", endPress);
-
-      tab.addEventListener("mousedown", startPress);
-      tab.addEventListener("mouseup", endPress);
-      tab.addEventListener("mouseleave", endPress);
-    });
-
-    // تشغيل أول مرة
-    loadClassNames();
-    refreshButtons();
-  </script>
 </body>
-</html>
+</html> 
